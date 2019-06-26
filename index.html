@@ -3,10 +3,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Blog Site</title>
-    <script src="https://cdn.jsdelivr.net/nmp/vue@2.6.10/dist/vue.js"></script>
+    <title>Vue practices</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <style media="screen">
-    html, body{
+      html, body{
         padding: 20px;
         clear: both;
         float: left;
@@ -64,8 +64,33 @@ Vue.component ('blog-post',{
             ]
           }
         })
-</head>
-<body>
-    <h1>Welcome to my Blog Site</h1>
+        var postBlogVue = new Vue({
+			el: '#blogPostCreation',
+			data: {
+				title: '',
+				username: '',
+				date: '',
+				content: '',
+			},
+			methods: {
+				publishPost: function() {
+					var newPost = {
+						title: this.title,
+						username: this.username,
+						date: this.date,
+						content: this.content
+					}
+					blogVue.posts.push(newPost)
+					this.title = ''
+					this.username = ''
+					this.date = ''
+					this.content = ''
+				}
+			}
+		})
+
+
+
+    </script>
 </body>
 </html>
