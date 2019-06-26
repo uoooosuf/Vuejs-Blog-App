@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blog Site</title>
+    <script src="https://cdn.jsdelivr.net/nmp/vue@2.6.10/dist/vue.js"></script>
+    <style media="screen">
+    html, body{
+        padding: 20px;
+        clear: both;
+        float: left;
+      }
+      #SingleBlogPost{
+        margin-bottom: 50px;
+        padding: 10px;
+        border: 2px solid blue;
+      }
+      #blogPostCreation{
+        margin-bottom: 50px;
+        padding: 10px;
+        border: 2px solid black;
+      }
+      #blogPostCreation >*{
+        margin: 10px;
+    </style>
+</head>
+<body>
+    <h1>Welcome To My Blog Site!</h1>
+
+
+	<div id='blogPosts'>
+		<blog-post
+		v-for='post in posts'
+		v-bind:blogpost='post'
+		></blog-post>
+	</div>
+  <div id="blogPostCreation">
+    <h2>Make a  New Blog Post</h2>
+    <input V-model = 'title'><br>
+      <input V-model = 'username'><br>
+        <input V-model = 'date'><br>
+          <input V-model = 'content'><br>
+          <button V-on:click='publishPost'>Publish Post</button>
+  </div>
+    <script>
+Vue.component ('blog-post',{
+          props: ['blogpost'],
+          template: `<div id="SingleBlogPost">
+              <h2>{{blogpost.title}}</h2>
+              <h3>{{blogpost.username}}</h3>
+              <h4>{{blogpost.date}}</h4>
+              <p>{{blogpost.content}}</p>
+            </div>`,
+        })
+
+        var blogVue = new Vue ({
+          el: '#blogposts',
+          data: {
+            posts: [
+              {title:'First Post', username: 'Yusuf',  date: 'June 4, 2019', content: 'This is the content of my very interesting first Blog.'},
+
+              {title:'Second Post', username: 'Yusuf',  date: 'June 5, 2019', content: 'This is the content of my very interesting second Blog.'},
+            ]
+          }
+        })
+</head>
+<body>
+    <h1>Welcome to my Blog Site</h1>
+</body>
+</html>
